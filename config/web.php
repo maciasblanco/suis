@@ -119,7 +119,7 @@ $config = [
             'site/index',
             'site/error',
             'site/sidebar',
-            '*',
+            //'*',
         ]
     ],
     'params' => $params,
