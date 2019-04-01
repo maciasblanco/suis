@@ -1,0 +1,13 @@
+[submodule "modules/epi10"]
+	path = modules/epi10
+	url = http://10.29.85.229/pazuzu666/morbilidad.git
+[submodule "modules/organizacion_sanitaria"]
+	path = modules/organizacion_sanitaria
+	url = http://10.29.85.229/rgonzalez/suis-organizacion-sanitaria.git
+[submodule "modules/mortalidad"]
+	url = http://10.29.85.229/pazuzu666/mortalidad.git
+[submodule "modules/ev25"]
+	path = modules/ev25
+	url = http://10.29.85.229/pazuzu666/ev25.git
+[submodule "modules/sicasmi"]
+	url = http://10.29.85.229/pazuzu666/sicasmi.git
