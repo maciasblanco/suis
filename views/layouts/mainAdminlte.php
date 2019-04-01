@@ -124,9 +124,12 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                                 <a href="#" onclick='$("#logout-form").submit()'>
                                     <span class="fa fa-sign-out"></span>
                                     <span class="hidden-xs">
-                                        <?= Yii::t('app', 'Logout') ?>
+                                        <i class="fas fa-power-off"></i>
                                     </span>
                                 </a>
+                            </li>
+                            <li class="hidden-xs">
+                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logos/banner.png" alt="Logo">
                             </li>
                         <?php endif; ?>
                     </ul>
