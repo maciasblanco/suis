@@ -122,10 +122,7 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                                 ]) ?>
                                 <?= Html::endForm() ?>
                                 <a href="#" onclick='$("#logout-form").submit()'>
-                                    <span class="fa fa-sign-out"></span>
-                                    <span class="hidden-xs">
-                                        <i class="fas fa-power-off"></i>
-                                    </span>
+                                    <i class="fas fa-power-off"></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">

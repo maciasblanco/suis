@@ -36,26 +36,6 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
         #widget_scroll_container {
             position:relative;
         }
-        /*#widget_scroll_container {
-            width: 2160px;
-        }
-        div.widget_container {
-            width: 1200px;
-        }
-        div.widget_container.half {
-            width: 400px;
-        }
-        @media screen and (max-height: 680px) {
-            #widget_scroll_container {
-                width: 1660px;
-            }
-            div.widget_container {
-                width: 900px;
-            }
-            div.widget_container.half {
-                width: 300px;
-            }
-        }*/
     </style>
 </head>
 <body class="hold-transition skin-suis sidebar-mini sidebar-collapse">
@@ -88,7 +68,7 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                                 </a>
                             </li>
                         <?php else: ?>
-                            <li class="dropdown user user-menu">
+                            <li>
                                 <a href="#">
                                     <i class="fa fa-user"></i>
                                     <span class="hidden-xs">
@@ -97,17 +77,14 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                                     </span>
                                 </a>
                             </li>
-                            <li class="dropdown user user-menu">
+                            <li>
                                 <?= Html::beginForm(['/site/logout'], 'post', [
                                     'style' => 'display:none',
                                     'id' => 'logout-form',
                                 ]) ?>
                                 <?= Html::endForm() ?>
                                 <a href="#" onclick='$("#logout-form").submit()'>
-                                    <span class="fa fa-sign-out"></span>
-                                    <span class="hidden-xs">
-                                        <i class="fas fa-power-off"></i>
-                                    </span>
+                                    <i class="fas fa-power-off"></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
