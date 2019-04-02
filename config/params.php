@@ -14,4 +14,7 @@ return [
         "width" => "100%",
     ],
     'optionsByAjaxLimit' => 10,
+    'app' => [
+        'nombreCompleto' => 'Sistema de Información de Salud',
+    ],
 ];
