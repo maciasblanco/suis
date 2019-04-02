@@ -32,15 +32,11 @@ class CategoriaEstadoNutricional extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-<<<<<<< HEAD
-            [['descripcion', 'eliminado'], 'default', 'value' => null],
-            [['descripcion'], 'string'],
+            [['eliminado'], 'default', 'value' => false],
             [['eliminado'], 'boolean'],
-=======
             [['descripcion'], 'default', 'value' => null],
             [['descripcion'], 'string'],
             [['descripcion'], 'unique'],
->>>>>>> modelosarreglos
         ];
     }
 
@@ -52,10 +48,7 @@ class CategoriaEstadoNutricional extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'descripcion' => Yii::t('app', 'Descripcion'),
-<<<<<<< HEAD
             'eliminado' => Yii::t('app', 'Eliminado'),
-=======
->>>>>>> modelosarreglos
         ];
     }
 
@@ -66,7 +59,7 @@ class CategoriaEstadoNutricional extends \yii\db\ActiveRecord
     {
         return $this->hasMany(EstadoNutricional::className(), ['id_categoria_estado_nutricional' => 'id']);
     }
-<<<<<<< HEAD
+
     /**
      * {@inheritdoc}
      */
@@ -74,6 +67,4 @@ class CategoriaEstadoNutricional extends \yii\db\ActiveRecord
     {
         return $this->descripcion;
     }
-=======
->>>>>>> modelosarreglos
 }
