@@ -139,6 +139,17 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        'generators' => [
+            'modalCrud' => [
+                'class' => 'app\templates\modal_crud\Generator',
+                'templates' => [
+                    'default' => '@app/templates/modal_crud/default',
+                ]
+            ],
+            'model' => [
+                'class' => 'app\templates\model\Generator',
+            ],
+        ],
     ];
 }
 
