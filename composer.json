@@ -25,7 +25,8 @@
         "almasaeed2010/adminlte": "~2.4",
         "bower-asset/bootstrap-daterangepicker": "^3.0",
         "bower-asset/jquery-ui": "^1.12",
-        "components/font-awesome": "^5.4"
+        "components/font-awesome": "^5.4",
+        "mpdf/mpdf": "~8.0.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
