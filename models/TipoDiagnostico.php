@@ -50,4 +50,12 @@ class TipoDiagnostico extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Diagnostico::className(), ['id_tipo_diagnostico' => 'id']);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->descripcion;
+    }
 }
