@@ -206,6 +206,14 @@ class DatosPersona extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSexo()
+    {
+        return $this->hasOne(Sexo::className(), ['id' => 'id_sexo']);
+    }
+
+    /**
      *
      */
     public function afterFind()
