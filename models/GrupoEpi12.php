@@ -71,6 +71,12 @@ class GrupoEpi12 extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Cie10Subcategoria::className(), ['id' => 'id_cie10_subcategoria'])->viaTable('grupo_epi12_cie10', ['id_grupo_epi12' => 'id']);
     }
+
+    public static function find()
+    {
+        return new GrupoEpi12Query(get_called_class());
+    }
+
     /**
      * {@inheritdoc}
      */

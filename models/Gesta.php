@@ -19,7 +19,7 @@ class Gesta extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'catalogo.gestas';
+        return 'catalogo.gesta';
     }
 
     /**
@@ -49,5 +49,10 @@ class Gesta extends \yii\db\ActiveRecord
     public function getDatosAtencions()
     {
         return $this->hasMany(DatosAtencion::className(), ['id_gesta' => 'id']);
+    }
+
+    public function __toString()
+    {
+        return $this->descripcion;
     }
 }
