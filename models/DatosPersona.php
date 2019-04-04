@@ -112,7 +112,7 @@ class DatosPersona extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDatosAtencions()
+    public function getDatosAtencion()
     {
         return $this->hasMany(DatosAtencion::className(), ['id_datos_personas' => 'id']);
     }
@@ -214,6 +214,22 @@ class DatosPersona extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComunidad()
+    {
+        return $this->hasone(Comunidad::className(), ['id' => 'id_comunidad']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getdatosUbicacion()
+    {
+        return $this->hasone(DatosUbicacion::className(), ['id_datos_persona' => 'id']);
+    }
+
+    /**
      *
      */
     public function afterFind()
@@ -224,5 +240,29 @@ class DatosPersona extends \yii\db\ActiveRecord
             $this->municipio = $this->parroquia->codigoMunicipio->codigo_municipio;
             $this->estado = $this->parroquia->codigoMunicipio->codigo_estado;
         }
+    }
+
+    /**
+     * Nombres
+     */
+    public function getNombres()
+    {
+        return implode(' ', [$this->primer_nombre, $this->segundo_nombre]);
+    }
+
+    /**
+     * Apellidos
+     */
+    public function getApellidos()
+    {
+        return implode(' ', [$this->primer_apellido, $this->segundo_apellido]);
+    }
+
+    /**
+     * Nombres y Apellidos
+     */
+    public function getNombresApellidos()
+    {
+        return implode(' ', [$this->nombres, $this->apellidos]);
     }
 }
