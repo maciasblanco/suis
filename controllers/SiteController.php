@@ -131,6 +131,33 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public static function export($query, $nombre)
+    {     
+	$column = NULL;
+	for($i=0; $i< 1; $i++){
+		foreach($query[$i] as $key => $value){
+			$columns[] = $key;
+		}
+
+    	}
+	$name = $nombre."-". date("d_m_Y");
+	\moonland\phpexcel\Excel::export(
+            [
+                'models' => $query, 
+                'fileName' => $name.'.xlsx', 
+                'columns' => $columns, 
+            ]
+        );
+
+    } 
+
+    /**
+     * Pagina de mantenimiento
+     */
+    public function actionDesarrollo()
+    {
+        return $this->render('desarrollo');
+    }  
 
     /**
      *

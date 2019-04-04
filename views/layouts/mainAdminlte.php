@@ -110,7 +110,7 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                                 <a href="#">
                                     <i class="fa fa-user"></i>
                                     <span class="hidden-xs">
-                                        <?= Yii::t('app', 'User') ?>:
+                                        <?= Yii::t('app', 'Usuario') ?>:
                                         <b><?= Yii::$app->user->identity->username ?></b>
                                     </span>
                                 </a>
@@ -148,6 +148,7 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            <?php if (isset($this->params['breadcrumbs']) || isset($this->blocks['contentHeader'])): ?>
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <?php if (isset($this->blocks['contentHeader'])): ?>
@@ -156,6 +157,7 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                     <h1>&nbsp;</h1>
                 <?php endif; ?>
 
+                <?php if (isset($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget([
                     'homeLink' => [
                         'label' => Yii::t('app', 'Home'),
@@ -164,7 +166,9 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
                     ],
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>
+                <?php endif; ?>
             </section>
+            <?php endif; ?>
 
             <!-- Main content -->
             <section class="content">
@@ -186,7 +190,7 @@ $this->title = Yii::$app->name . ' - ' . $this->title;
         </div>
         <!-- /.content-wrapper -->
 
-        <footer class="main-footer"></footer>
+        <!--<footer class="main-footer"></footer>-->
     </div>
     <!-- ./wrapper -->
     <?php $this->endBody() ?>

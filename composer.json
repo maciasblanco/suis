@@ -26,7 +26,8 @@
         "bower-asset/bootstrap-daterangepicker": "^3.0",
         "bower-asset/jquery-ui": "^1.12",
         "components/font-awesome": "^5.4",
-        "mpdf/mpdf": "~8.0.0"
+        "mpdf/mpdf": "~8.0.0",
+        "moonlandsoft/yii2-phpexcel": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
