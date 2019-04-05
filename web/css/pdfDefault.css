@@ -1,0 +1,33 @@
+table,
+table thead th,
+table tbody td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+table.no-border,
+table.no-border th,
+table.no-border td {
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #EFEFEF;
+}
+
+.rotate-90{
+    text-rotate: 90;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.center{
+    text-align: center;
+}

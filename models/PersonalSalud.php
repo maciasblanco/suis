@@ -83,10 +83,10 @@ class PersonalSalud extends \yii\db\ActiveRecord
      */
     public function getNombreCompleto()
     {
-        return implode(' ', [
+        return implode(' ', array_filter([
             $this->primer_apellido, $this->segundo_apellido,
             $this->primer_nombre, $this->segundo_nombre
-        ]);
+        ]));
     }
 
     /**
@@ -98,5 +98,13 @@ class PersonalSalud extends \yii\db\ActiveRecord
             $this->cedula,
             $this->nombreCompleto
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->nombreCompleto;
     }
 }

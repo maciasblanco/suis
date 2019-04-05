@@ -27,7 +27,8 @@
         "bower-asset/jquery-ui": "^1.12",
         "components/font-awesome": "^5.4",
         "mpdf/mpdf": "~8.0.0",
-        "moonlandsoft/yii2-phpexcel": "*"
+        "moonlandsoft/yii2-phpexcel": "*",
+        "phpoffice/phpspreadsheet": "^1.6"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
