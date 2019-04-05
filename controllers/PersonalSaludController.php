@@ -31,7 +31,7 @@ class PersonalSaludController extends Controller
         $medicos = Medico::find()
             ->select(['id', 'cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
             ->distinct()
-            ->where([
+            ->andWhere([
                 'or',
                 ['ilike', '(cedula::character varying)', $term],
                 ['ilike', 'primer_nombre', $term],
@@ -66,7 +66,7 @@ class PersonalSaludController extends Controller
         $enfermeras = Enfermera::find()
             ->select(['id', 'cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
             ->distinct()
-            ->where([
+            ->andWhere([
                 'or',
                 ['ilike', '(cedula::character varying)', $term],
                 ['ilike', 'primer_nombre', $term],

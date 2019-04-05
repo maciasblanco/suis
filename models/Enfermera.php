@@ -29,14 +29,6 @@ class Enfermera extends PersonalSalud
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return 'catalogo.personal_salud';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         $rules = parent::rules();
