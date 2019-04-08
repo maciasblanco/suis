@@ -29,7 +29,7 @@ class PersonalSaludController extends Controller
     public function actionGetMedico($term)
     {
         $medicos = Medico::find()
-            ->select(['id', 'cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
+            ->select(['(MIN(id))', 'cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
             ->distinct()
             ->andWhere([
                 'or',
@@ -39,6 +39,7 @@ class PersonalSaludController extends Controller
                 ['ilike', 'primer_apellido', $term],
                 ['ilike', 'segundo_apellido', $term],
             ])
+            ->groupBy(['cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
             ->orderBy('primer_apellido')
             ->limit(20)
             ->all();
@@ -64,7 +65,7 @@ class PersonalSaludController extends Controller
     public function actionGetEnfermera($term)
     {
         $enfermeras = Enfermera::find()
-            ->select(['id', 'cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
+            ->select(['(MIN(id))', 'cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
             ->distinct()
             ->andWhere([
                 'or',
@@ -74,6 +75,7 @@ class PersonalSaludController extends Controller
                 ['ilike', 'primer_apellido', $term],
                 ['ilike', 'segundo_apellido', $term],
             ])
+            ->groupBy(['cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'])
             ->orderBy('primer_apellido')
             ->limit(20)
             ->all();

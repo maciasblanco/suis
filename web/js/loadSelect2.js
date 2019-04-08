@@ -11,10 +11,10 @@ var loadSelect2 = function(dropdown) {
         select2Conf = Object.assign({}, $("body").data('select2DefaultConf'));
     } else {
         select2Conf = {
-            placeholder: "Select",
+            placeholder: "Seleccione",
             theme: "classic",
             allowClear: true,
-            language: "en",
+            language: "es",
         };
     }
 

@@ -42,8 +42,8 @@ class DatosPersonaController extends Controller
             'id_sexo' => $per->id_sexo,
             'fecha_nac' => $per->fecha_nac,
             'id_parroquia' => $per->id_parroquia,
-            'codigo_municipio' => $per->parroquia->codigo_municipio,
-            'codigo_estado' => $per->parroquia->municipio->codigo_estado,
+            'codigo_municipio' => ($per->parroquia) ? $per->parroquia->codigo_municipio : null,
+            'codigo_estado' => ($per->parroquia && $per->parroquia->municipio) ? $per->parroquia->municipio->codigo_estado : null,
         ];
 
         if (empty($response)) {

@@ -35,9 +35,9 @@ $config = [
         'epi10' => [
             'class' => 'app\modules\epi10\Epi10Module',
         ],
-        'pqn' => [
+        /*'pqn' => [
             'class' => 'app\modules\pqn\PqnModule',
-        ],
+        ],*/
         'mortalidad' => [
            'class' => 'app\modules\mortalidad\MortalidadModule',
         ],

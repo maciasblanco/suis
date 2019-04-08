@@ -43,7 +43,6 @@ $isCollapsed = Yii::$app->user->isGuest || Yii::$app->session->get('collapsed-si
 \app\assets\Select2LoadAsset::register($this);
 
 $select2DefaultConf = Yii::$app->params['select2BaseConfig'];
-$select2DefaultConf['placeholder'] = Yii::t('app', 'Select');
 $select2DefaultConf['language'] = Yii::$app->language;
 
 $select2Conf = json_encode($select2DefaultConf);
