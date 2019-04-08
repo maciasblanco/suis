@@ -39,8 +39,11 @@ use Yii;
  */
 class DatosPersona extends \yii\db\ActiveRecord
 {
-  public $estado;
-  public $municipio;
+    public $estado;
+    public $municipio;
+
+    public $ownNoCedulado;
+
     /**
      * {@inheritdoc}
      */
@@ -56,6 +59,7 @@ class DatosPersona extends \yii\db\ActiveRecord
     {
         return [
             [['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'], 'default', 'value' => null],
+            [['nro_hijo'], 'default', 'value' => 0],
             [['id_nacionalidad'], 'required'],
             [['cedula'], 'required', 'when' => function ($model) {
                 return empty($this->primer_nombre);
@@ -64,11 +68,11 @@ class DatosPersona extends \yii\db\ActiveRecord
                 return empty($this->cedula);
             }],
             [['id_parroquia'], 'default', 'value' => null],
-            [['id_nacionalidad', 'id_parroquia'], 'integer'],
+            [['id_nacionalidad', 'id_parroquia', 'nro_hijo'], 'integer'],
             [['cedula'], 'number'],
             [['fecha_nac'], 'safe'],
             [['estado', 'municipio'],'safe'],
-            [['carnet_patria'], 'boolean'],
+            [['carnet_patria', 'ownNoCedulado'], 'boolean'],
             [['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'], 'string', 'max' => 50],
             [['id_sexo'], 'string', 'max' => 1],
             [['codigo_carnet', 'serial_carnet'], 'string', 'max' => 11],
@@ -92,11 +96,13 @@ class DatosPersona extends \yii\db\ActiveRecord
             'id_nacionalidad' => 'Nacionalidad',
             'id_parroquia' => 'Parroquia',
             'id_sexo' => 'Sexo',
-            'cedula' => 'Cedula',
+            'cedula' => 'Cédula',
             'fecha_nac' => 'Fecha de Nacimiento',
             'carnet_patria' => 'Carnet Patria',
             'codigo_carnet' => 'Codigo Carnet',
             'serial_carnet' => 'Serial Carnet',
+            'nro_hijo' => 'N° Hijo',
+            'ownNoCedulado' => '¿Es niño no cedulado?',
         ];
     }
 
@@ -251,6 +257,8 @@ class DatosPersona extends \yii\db\ActiveRecord
         if (!empty($this->fecha_nac)) {
             $this->fecha_nac = date('d-m-Y', strtotime($this->fecha_nac));
         }
+
+        $this->ownNoCedulado = ($this->nro_hijo != 0) ? 1 : 0;
     }
 
     /**
