@@ -67,7 +67,7 @@ class SemanaEpidemiologica extends \yii\db\ActiveRecord
      */
     public function __toString()
     {
-        return $this->semana;
+        return $this->semanaYFechas;
     }
 
     /**

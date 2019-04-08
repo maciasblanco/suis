@@ -7,10 +7,10 @@ return [
         'userTable' => 'seguridad.user',
     ],
     'select2BaseConfig' => [
-        "placeholder" => "Select",
+        "placeholder" => "Seleccione",
         "theme" => "bootstrap",
         "allowClear" => true,
-        "language" => "en",
+        "language" => "es",
         "width" => "100%",
     ],
     'optionsByAjaxLimit' => 10,

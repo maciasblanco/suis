@@ -83,6 +83,14 @@ class Parroquia extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getMunicipio()
+    {
+        return $this->hasOne(Municipio::className(), ['codigo_municipio' => 'codigo_municipio']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCodigoMunicipio()
     {
         return $this->hasOne(Municipio::className(), ['codigo_municipio' => 'codigo_municipio']);
