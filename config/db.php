@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=192.168.2.24;dbname=suis_dev',
+    'dsn' => 'pgsql:host=192.168.2.24;dbname=suis_dev_test',
     'username' => 'postgres',
     'password' => '123456',
     'charset' => 'utf8',

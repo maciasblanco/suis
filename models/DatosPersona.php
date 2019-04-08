@@ -55,7 +55,14 @@ class DatosPersona extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cedula', 'id_nacionalidad'], 'required'],
+            [['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido'], 'default', 'value' => null],
+            [['id_nacionalidad'], 'required'],
+            [['cedula'], 'required', 'when' => function ($model) {
+                return empty($this->primer_nombre);
+            }],
+            [['primer_nombre'], 'required', 'when' => function ($model) {
+                return empty($this->cedula);
+            }],
             [['id_parroquia'], 'default', 'value' => null],
             [['id_nacionalidad', 'id_parroquia'], 'integer'],
             [['cedula'], 'number'],
@@ -239,6 +246,10 @@ class DatosPersona extends \yii\db\ActiveRecord
         if (!empty($this->id_parroquia)) {
             $this->municipio = $this->parroquia->codigoMunicipio->codigo_municipio;
             $this->estado = $this->parroquia->codigoMunicipio->codigo_estado;
+        }
+
+        if (!empty($this->fecha_nac)) {
+            $this->fecha_nac = date('d-m-Y', strtotime($this->fecha_nac));
         }
     }
 
