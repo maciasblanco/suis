@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\modules\epi10\models\DatosAtencion;
 
 /**
  * This is the model class for table "catalogo.referencia_contrareferencia".
@@ -52,7 +53,7 @@ class ReferenciaContrareferencia extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDatosAtencions()
+    public function getDatosAtencionRef()
     {
         return $this->hasMany(DatosAtencion::className(), ['id_referencia' => 'id']);
     }
@@ -60,7 +61,7 @@ class ReferenciaContrareferencia extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDatosAtencions0()
+    public function getDatosAtencionContra()
     {
         return $this->hasMany(DatosAtencion::className(), ['id_contra_referencia' => 'id']);
     }

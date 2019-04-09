@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\modules\epi10\models\DatosAtencion;
 
 /**
  * This is the model class for table "catalogo.discapacidad".
@@ -52,7 +53,7 @@ class Discapacidad extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDatosAtencions()
+    public function getDatosAtencion()
     {
         return $this->hasMany(DatosAtencion::className(), ['id_discapacidad' => 'id']);
     }

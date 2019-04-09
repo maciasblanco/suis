@@ -34,30 +34,54 @@ class CircunferenciaCefalica extends Model {
 		return $opc;
 	}
 
-	/**
-	 *
-	 */
-	public function getAsRows()
-	{
-		$opc = [];
+    /**
+     *
+     */
+    public function getAsRows()
+    {
+        $opc = [];
 
-		$opc[] = new CircunferenciaCefalica([
-			'id' => self::NORMAL,
-			'descripcion' => 'Normal'
-		]);
+        $opc[] = new CircunferenciaCefalica([
+            'id' => self::NORMAL,
+            'descripcion' => 'Normal'
+        ]);
 
-		$opc[] = new CircunferenciaCefalica([
-			'id' => self::MICROCEFALICA,
-			'descripcion' => 'Microcefalica'
-		]);
+        $opc[] = new CircunferenciaCefalica([
+            'id' => self::MICROCEFALICA,
+            'descripcion' => 'Microcefalica'
+        ]);
 
-		$opc[] = new CircunferenciaCefalica([
-			'id' => self::MACROCEFALIA,
-			'descripcion' => 'Macrocefalia'
-		]);
+        $opc[] = new CircunferenciaCefalica([
+            'id' => self::MACROCEFALIA,
+            'descripcion' => 'Macrocefalia'
+        ]);
 
-		return $opc;
-	}
+        return $opc;
+    }
+
+    /**
+     *
+     */
+    public function getByIds($ids)
+    {
+        if (!is_array($ids) || empty($ids)) {
+            return false;
+        }
+
+        $options = self::getOptions();
+        $result = [];
+
+        foreach ($options as $id => $value) {
+            if (in_array($id, $ids) && !isset($result[$id])) {
+                $result[$id] = new CircunferenciaCefalica([
+                    'id' => $id,
+                    'descripcion' => $value,
+                ]);
+            }
+        }
+
+        return $result;
+    }
 
 	/**
 	 *
