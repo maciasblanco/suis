@@ -20,7 +20,7 @@ th {
     background-color: #EFEFEF;
 }
 
-.rotate-90{
+.rotate-90 {
     text-rotate: 90;
 }
 
@@ -28,6 +28,14 @@ th {
     font-weight: bold;
 }
 
-.text-center{
+.text-center {
     text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.vertical-top {
+	vertical-align: top;
 }

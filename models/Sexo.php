@@ -31,6 +31,7 @@ class Sexo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['letra'], 'string', 'max' => 1],
             [['descripcion'], 'string', 'max' => 255],
         ];
     }
@@ -42,6 +43,7 @@ class Sexo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'letra' => 'Letra',
             'descripcion' => 'Descripcion',
         ];
     }
@@ -52,5 +54,13 @@ class Sexo extends \yii\db\ActiveRecord
     public function getCertificados()
     {
         return $this->hasMany(Certificado::className(), ['id_sexo' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->letra;
     }
 }
