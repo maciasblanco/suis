@@ -80,6 +80,15 @@ class Cie10Subcategoria extends \yii\db\ActiveRecord
     {
         return $this->hasMany(GrupoEpi12::className(), ['id' => 'id_grupo_epi12'])->viaTable('grupo_epi12_cie10', ['id_cie10_subcategoria' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEpi10Diagnosticos()
+    {
+        return $this->hasMany(\app\modules\epi10\models\Diagnostico::className(), ['id_diagnostico' => 'id']);
+    }
+
     /**
      * {@inheritdoc}
      */

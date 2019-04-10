@@ -46,9 +46,9 @@ class TipoDiagnostico extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDiagnosticos()
+    public function getEpi10Diagnosticos()
     {
-        return $this->hasMany(Diagnostico::className(), ['id_tipo_diagnostico' => 'id']);
+        return $this->hasMany(\app\modules\epi10\models\Diagnostico::className(), ['id_tipo_diagnostico' => 'id']);
     }
 
     /**

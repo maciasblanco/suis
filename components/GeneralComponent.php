@@ -24,7 +24,7 @@ class GeneralComponent extends Component
         $birthTime = strtotime($birthday);
 
         if ($currentTime < 1 || $birthTime < 1) {
-            var_dump($currentTime, $birthTime);
+            //var_dump($currentTime, $birthTime);
             return false;
         }
 

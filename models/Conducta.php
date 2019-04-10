@@ -69,4 +69,9 @@ class Conducta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(RenglonConducta::className(), ['hconducta' => 'id']);
     }
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 }
