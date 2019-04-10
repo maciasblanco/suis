@@ -8,13 +8,12 @@ use yii\base\Model;
 /**
  *
  */
-class CircunferenciaCefalica extends Model {
+class TipoRiesgoEmbarazo extends Model {
 	public $id;
 	public $descripcion;
 
-	const NORMAL = 1;
-	const MICROCEFALICA = 2;
-	const MACROCEFALIA = 3;
+	const BAJO = 1;
+	const ALTO = 2;
 
 	/**
 	 *
@@ -22,9 +21,8 @@ class CircunferenciaCefalica extends Model {
 	public function getOptions($object = false)
 	{
 		$opc = [
-			self::NORMAL => 'Normal',
-			self::MICROCEFALICA => 'Microcefalica',
-			self::MACROCEFALIA => 'Macrocefalia',
+			self::BAJO => 'Bajo Riesgo',
+			self::ALTO => 'Alto Riesgo',
 		];
 
 		if ($object) {
@@ -41,19 +39,14 @@ class CircunferenciaCefalica extends Model {
     {
         $opc = [];
 
-        $opc[] = new CircunferenciaCefalica([
-            'id' => self::NORMAL,
-            'descripcion' => 'Normal'
+        $opc[] = new TipoRiesgoEmbarazo([
+            'id' => self::BAJO,
+            'descripcion' => 'Bajo Riesgo'
         ]);
 
-        $opc[] = new CircunferenciaCefalica([
-            'id' => self::MICROCEFALICA,
-            'descripcion' => 'Microcefalica'
-        ]);
-
-        $opc[] = new CircunferenciaCefalica([
-            'id' => self::MACROCEFALIA,
-            'descripcion' => 'Macrocefalia'
+        $opc[] = new TipoRiesgoEmbarazo([
+            'id' => self::ALTO,
+            'descripcion' => 'Alto Riesgo'
         ]);
 
         return $opc;
@@ -73,7 +66,7 @@ class CircunferenciaCefalica extends Model {
 
         foreach ($options as $id => $value) {
             if (in_array($id, $ids) && !isset($result[$id])) {
-                $result[$id] = new CircunferenciaCefalica([
+                $result[$id] = new TipoRiesgoEmbarazo([
                     'id' => $id,
                     'descripcion' => $value,
                 ]);
