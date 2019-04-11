@@ -1,0 +1,26 @@
+CREATE TABLE catalogo.lactancia_materna(
+    id serial,
+    descripcion character varying(100),
+    eliminado boolean DEFAULT false,
+    created_at integer,
+    updated_at integer,
+    created_by integer,
+    updated_by integer,
+    updated_ip character varying,
+    CONSTRAINT catalogo_lactancia_materna_pk PRIMARY KEY (id)
+);
+
+INSERT INTO catalogo.lactancia_materna(descripcion) VALUES
+('Materna 1ra hora (iniciación)'),
+('Materna Exclusiva'),
+('Materna + Biberon'),
+('Materna + Complementaria'),
+('Solo con Formula'),
+('Solo Complentaria');
+
+ALTER TABLE epi10.datos_atencion DROP COLUMN lactancia_materna;
+ALTER TABLE epi10.datos_atencion ADD COLUMN id_lactancia_materna integer;
+ALTER TABLE epi10.datos_atencion ADD CONSTRAINT
+    epi10_datos_atencion_id_lactancia_materna_fk FOREIGN KEY (id_lactancia_materna)
+    REFERENCES catalogo.lactancia_materna (id);
+
