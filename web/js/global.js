@@ -133,3 +133,38 @@ $(document).on("submit", ".modal .catalog-form", function(e) {
 
     return false;
 });
+
+/*
+ * Modal form submit
+ */
+$(document).on("submit", ".modal form:not(.catalog-form)", function(e) {
+    e.preventDefault();
+
+    var form = $(this);
+    var url = form.attr('action');
+    var data = form.serialize();
+    var modal = form.parents('.modal');
+
+    $.ajax({
+        url: url,
+        data: data,
+        type: 'post',
+        beforeSend: function(jqXHR, settings) {
+            modal.find(".modal-body").html('<center><div class="loader"></div></center>');
+            modal.modal("show");
+        },
+        success: function(result, textStatus, jqXHR) {
+            if (result != "close-modal") {
+                modal.find(".modal-body").html(result);
+                modal.find(".modal-body").find('select').each(function() {
+                    loadSelect2(this);
+                });
+            } else {
+                modal.modal("hide");
+                location.reload();
+            }
+        }
+    });
+
+    return false;
+});
