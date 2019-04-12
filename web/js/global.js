@@ -137,7 +137,7 @@ $(document).on("submit", ".modal .catalog-form", function(e) {
 /*
  * Modal form submit
  */
-$(document).on("submit", ".modal form:not(.catalog-form)", function(e) {
+$(document).on("submit", ".modal form:not(.special-form)", function(e) {
     e.preventDefault();
 
     var form = $(this);

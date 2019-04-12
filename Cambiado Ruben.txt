@@ -24,3 +24,4 @@ ALTER TABLE epi10.datos_atencion ADD CONSTRAINT
     epi10_datos_atencion_id_lactancia_materna_fk FOREIGN KEY (id_lactancia_materna)
     REFERENCES catalogo.lactancia_materna (id);
 
+ALTER TABLE epi10.tratamiento ADD COLUMN cantidad smallint;
