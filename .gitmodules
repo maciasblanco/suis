@@ -11,6 +11,3 @@
 	url = http://10.29.85.229/rgonzalez/ev25.git
 [submodule "modules/sicasmi"]
 	url = http://10.29.85.229/rgonzalez/sicasmi.git
-[submodule "modules/consolidados-epi"]
-	path = modules/consolidados-epi
-	url = http://10.29.85.229/rgonzalez/consolidados-epi.git
