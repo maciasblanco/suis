@@ -71,11 +71,24 @@ class Cie10Grupo extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Cie10Capitulo::className(), ['id' => 'id_cie10_capitulo']);
     }
+
+    /**
+     * Codigo + Descripcion
+     */
+    public function getCodigoDescripcion()
+    {
+        if (empty($this->codigo)) {
+            return $this->cie10Capitulo->codigoDescripcion;
+        } else {
+            return implode(' - ', [$this->codigo, $this->descripcion]);
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
     public function __toString()
     {
-        return $this->descripcion;
+        return empty($this->descripcion) ? $this->cie10Capitulo : $this->descripcion;
     }
 }

@@ -237,9 +237,17 @@ class DatosPersona extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getdatosUbicacion()
+    public function getDatosUbicacion()
     {
         return $this->hasone(DatosUbicacion::className(), ['id_datos_persona' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosContacto()
+    {
+        return $this->hasone(DatosContacto::className(), ['id_datos_persona' => 'id']);
     }
 
     /**

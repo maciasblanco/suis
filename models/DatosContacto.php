@@ -1,177 +1,83 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
 use Yii;
-use common\models\Asic;
-use common\models\Municipio;
-use common\models\Parroquia;
-use common\models\Parentesco;
 
 /**
- * This is the model class for table "cirugia.datos_contacto".
+ * This is the model class for table "general.datos_contacto".
  *
- * @property integer $id
- * @property integer $id_datos_personales
- * @property string $tlf_contacto
- * @property string $tlf_contacto_2
- * @property string $tlf_celular
- * @property string $tlf_celular_2
+ * @property int $id
+ * @property string $telefono_habitacion
+ * @property string $telefono_movil
+ * @property string $telefono_otro
+ * @property string $correo
  * @property string $twitter
  * @property string $instagram
  * @property string $facebook
- * @property string $nombre_pariente
- * @property string $tlf_pariente
- * @property string $email
- * @property string $cod_parroquia
- * @property integer $id_asic
- * @property string $direccion
+ * @property int $id_datos_persona
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $created_by
+ * @property int $updated_by
+ * @property string $updated_ip
  *
- * @property Asic $idAsic
- * @property Parroquia $codParroquia
- * @property DatosPersonales $idDatosPersonales
+ * @property DatosPersona $datosPersona
  */
 class DatosContacto extends \yii\db\ActiveRecord
 {
-    public $own_edo;
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'cirugia.datos_contacto';
+        return 'general.datos_contacto';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id_datos_personales', 'own_muni', 'cod_parroquia'], 'required'],
-            [['id_datos_personales', 'id_asic', 'id_parentesco'], 'integer'],
-            [['nombre_pariente', 'tlf_pariente', 'own_muni', 'cod_parroquia', 'direccion', 'twitter', 'instagram', 'facebook', 'email'], 'default', 'value'=>NULL],
-            [['own_muni', 'cod_parroquia', 'direccion'], 'string'],
-            [['tlf_celular', 'tlf_celular_2'], 'match', 'pattern'=>'/^04(([12][46])|(1[2]))\d{7}$/', 'message'=>'El número de teléfono debe empezar con un código válido (0416, 0426, 0414, 0424, 0412) y tener 11 caracteres.'],
-            [['tlf_contacto', 'tlf_contacto_2', 'tlf_pariente'], 'match', 'pattern'=>'/^0\d{10}$/', 'message'=>'El número de teléfono debe tener 11 caracteres numéricos, incluyendo el 0 inicial.'],
-            [['nombre_pariente'], 'string', 'max' => 255],
-            [['twitter', 'instagram', 'facebook', 'email'], 'string', 'max' => 100],
-            [['id_asic'], 'exist', 'skipOnError' => true, 'targetClass' => Asic::className(), 'targetAttribute' => ['id_asic' => 'id']],
-            [['cod_parroquia'], 'exist', 'skipOnError' => true, 'targetClass' => Parroquia::className(), 'targetAttribute' => ['cod_parroquia' => 'codigo_parroquia']],
-            [['id_datos_personales'], 'exist', 'skipOnError' => true, 'targetClass' => DatosPersonales::className(), 'targetAttribute' => ['id_datos_personales' => 'id']],
-            [['id_parentesco'], 'exist', 'skipOnError' => true, 'targetClass' => Parentesco::className(), 'targetAttribute' => ['id_parentesco' => 'id']], 
-            [['own_edo'], 'safe'],
-            [['id_parentesco'], 'required', 'when'=>function($model){
-              return $model->nombre_pariente != NULL;
-            }, 'whenClient'=>'function(attribute, value){
-              return $("#datoscontacto-nombre_pariente").val() != "";
-            }'],
-            [['tlf_celular'], 'required', 'when'=>function($model){
-                return $model->tlf_contacto == NULL;
-              }, 'whenClient'=>'function(attribute, value){
-                return $("#datoscontacto-tlf_contacto").val() == "";
-              }'],
-            [['tlf_contacto'], 'required', 'when'=>function($model){
-                return $model->tlf_celular == NULL;
-              }, 'whenClient'=>'function(attribute, value){
-                return $("#datoscontacto-tlf_celular").val() == "";
-              }'],
+            [['telefono_habitacion', 'telefono_movil', 'telefono_otro', 'correo', 'twitter', 'instagram', 'facebook', 'id_datos_persona', 'created_at', 'updated_at', 'created_by', 'updated_by', 'updated_ip'], 'default', 'value' => null],
+            [['id_datos_persona', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['updated_ip'], 'string'],
+            [['telefono_habitacion', 'telefono_movil', 'telefono_otro'], 'string', 'max' => 11],
+            [['correo'], 'string', 'max' => 70],
+            [['twitter', 'instagram', 'facebook'], 'string', 'max' => 30],
+            [['id_datos_persona'], 'exist', 'skipOnError' => true, 'targetClass' => DatosPersona::className(), 'targetAttribute' => ['id_datos_persona' => 'id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'id_datos_personales' => 'Datos Personales',
-            'tlf_contacto' => 'Tlf Local',
-            'tlf_contacto_2' => 'Tlf Local 2',
-            'tlf_celular' => 'Tlf Celular',
-            'tlf_celular_2' => 'Tlf Celular 2',
-            'twitter' => 'Twitter',
-            'instagram' => 'Instagram',
-            'facebook' => 'Facebook',
-            'nombre_pariente' => 'Nombre Pariente',
-            'tlf_pariente' => 'Tlf Pariente',
-            'email' => 'Email',
-            'cod_parroquia' => 'Parroquia',
-            'id_asic' => 'Asic',
-            'direccion' => 'Dirección',
-            'id_parentesco' => 'Parentesco', 
-            'own_edo' => 'Estado',
-            'own_muni' => 'Municipio',
+            'id' => Yii::t('app', 'ID'),
+            'telefono_habitacion' => Yii::t('app', 'Telefono Habitacion'),
+            'telefono_movil' => Yii::t('app', 'Telefono Movil'),
+            'telefono_otro' => Yii::t('app', 'Telefono Otro'),
+            'correo' => Yii::t('app', 'Correo'),
+            'twitter' => Yii::t('app', 'Twitter'),
+            'instagram' => Yii::t('app', 'Instagram'),
+            'facebook' => Yii::t('app', 'Facebook'),
+            'id_datos_persona' => Yii::t('app', 'Id Datos Persona'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'updated_ip' => Yii::t('app', 'Updated Ip'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdAsic()
+    public function getDatosPersona()
     {
-        return $this->hasOne(Asic::className(), ['id' => 'id_asic']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCodParroquia()
-    {
-        return $this->hasOne(Parroquia::className(), ['codigo_parroquia' => 'cod_parroquia']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDatosPersonales()
-    {
-        return $this->hasOne(DatosPersonales::className(), ['id' => 'id_datos_personales']);
-    }
-
-    public function getParentesco() 
-    { 
-      return $this->hasOne(Parentesco::className(), ['id' => 'id_parentesco']); 
-    } 
-
-    public function getMunicipio() 
-    { 
-      return $this->hasOne(Municipio::className(), ['codigo_municipio' => 'own_muni']); 
-    } 
-
-
-    public function afterFind(){
-      parent::afterFind();
-
-      if ($this->codParroquia!=NULL){
-          $this->own_edo = $this->codParroquia->codigoMunicipio->codigoEstado;
-          //$this->own_muni = $this->codParroquia->codigoMunicipio;      
-      }
-      else if ($this->id_asic != NULL){
-        $this->own_edo = $this->idAsic->codigoEstado->codigo_estado;
-      }
-
-      if ($this->own_muni == NULL && $this->cod_parroquia != NULL){
-        $this->own_muni = $this->codParroquia->codigo_municipio;
-      }
-
-      /*if ($this->hijo != ""){
-        $partes = explode('-', $this->cedula);
-        $this->cedula = $partes[0];
-      }*/
-
-      return TRUE;
-    }
-
-    public function beforeSave($insert){
-      parent::beforeSave($insert);
-
-      if ($this->cod_parroquia == ""){
-        $this->cod_parroquia = NULL;
-      }
-
-      return TRUE;
+        return $this->hasOne(DatosPersona::className(), ['id' => 'id_datos_persona']);
     }
 }

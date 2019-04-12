@@ -90,10 +90,22 @@ class Cie10Subcategoria extends \yii\db\ActiveRecord
     }
 
     /**
+     * Codigo + Descripcion
+     */
+    public function getCodigoDescripcion()
+    {
+        if (empty($this->codigo)) {
+            return $this->cie10Categoria->codigoDescripcion;
+        } else {
+            return implode(' - ', [$this->codigo, $this->descripcion]);
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
     {
-        return $this->descripcion;
+        return empty($this->descripcion) ? $this->cie10Categoria : $this->descripcion;
     }
 }

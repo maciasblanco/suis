@@ -71,11 +71,24 @@ class Cie10Categoria extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Cie10Subcategoria::className(), ['id_cie10_categoria' => 'id']);
     }
+
+    /**
+     * Codigo + Descripcion
+     */
+    public function getCodigoDescripcion()
+    {
+        if (empty($this->codigo)) {
+            return $this->cie10Grupo->codigoDescripcion;
+        } else {
+            return implode(' - ', [$this->codigo, $this->descripcion]);
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
     public function __toString()
     {
-        return $this->descripcion;
+        return empty($this->descripcion) ? $this->cie10Grupo : $this->descripcion;
     }
 }

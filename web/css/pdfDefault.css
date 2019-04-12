@@ -1,14 +1,25 @@
-table,
-table th,
-table td {
+table.border,
+table.border th,
+table.border td {
     border: 1px solid black;
-    padding: 5px;
 }
 
 table.no-border,
 table.no-border th,
 table.no-border td {
     border: 0;
+}
+
+table.padding,
+table.padding th,
+table.padding td {
+    padding: 5px;
+}
+
+table.no-padding,
+table.no-padding th,
+table.no-padding td {
+    padding: 0;
 }
 
 table {
@@ -42,4 +53,16 @@ th {
 
 .font-6 {
 	font-size: 6pt;
+}
+
+table {
+  height: 100%; 
+}
+
+tr, td, th {
+  height: 100%;
+}
+
+table table {
+    height: 100%;
 }
