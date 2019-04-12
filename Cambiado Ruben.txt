@@ -25,3 +25,6 @@ ALTER TABLE epi10.datos_atencion ADD CONSTRAINT
     REFERENCES catalogo.lactancia_materna (id);
 
 ALTER TABLE epi10.tratamiento ADD COLUMN cantidad smallint;
+
+ALTER TABLE epi10.datos_atencion ADD COLUMN eliminado boolean DEFAULT false;
+ALTER TABLE epi10.datos_atencion DROP COLUMN id_epi10;
