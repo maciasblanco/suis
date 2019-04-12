@@ -82,8 +82,33 @@ class Tratamiento extends \yii\db\ActiveRecord
         return $this->descripcion;
     }
 
+    /**
+     *
+     */
     public function getCodigoCompleto()
     {
       return $this->atcPrincipioActivo->cod_pa;
+    }
+
+    /**
+     *
+     */
+    public function getConcentracionYForma()
+    {
+        return implode(' ', array_filter([
+            $this->concentracion,
+            $this->formaFarmaceutica,
+        ]));
+    }
+
+    /**
+     *
+     */
+    public function getNombreCompleto()
+    {
+        return implode(' ', array_filter([
+            $this->descripcion,
+            $this->concentracionYForma,
+        ]));
     }
 }

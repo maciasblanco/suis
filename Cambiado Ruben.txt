@@ -28,3 +28,9 @@ ALTER TABLE epi10.tratamiento ADD COLUMN cantidad smallint;
 
 ALTER TABLE epi10.datos_atencion ADD COLUMN eliminado boolean DEFAULT false;
 ALTER TABLE epi10.datos_atencion DROP COLUMN id_epi10;
+
+
+
+
+
+ALTER TABLE epi10.datos_atencion ALTER COLUMN citologia TYPE smallint USING citologia::integer;
