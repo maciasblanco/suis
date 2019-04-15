@@ -4,41 +4,37 @@ $.fn.modal.Constructor.prototype.enforceFocus = function() {};
  * Activates the Select2 plugin for a specific dropdown
  */
 var loadSelect2 = function(dropdown) {
-    var select2Conf = {};
+	var select2Conf = {};
 
     //If the body has data-select2DefaultConf, this is used to configure the Select2
-    if ($("body").data('select2DefaultConf')) {
-        select2Conf = Object.assign({}, $("body").data('select2DefaultConf'));
-    } else {
-        select2Conf = {
-            placeholder: "Seleccione",
-            theme: "classic",
-            allowClear: true,
-            language: "es",
-        };
-    }
-
-    //If is a multiple dropdown the allowClear is false to avoid deplaced options
-    if (typeof $(dropdown).attr('multiple') != "undefined") {
-        select2Conf.allowClear = false;
-    }
+	if ($("body").data('select2DefaultConf')) {
+		select2Conf = Object.assign({}, $("body").data('select2DefaultConf'));
+	} else {
+		select2Conf = {
+	        placeholder: "Seleccione",
+	        theme: "classic",
+	        allowClear: true,
+	        language: "es",
+	    };
+	}
 
     //If dropdown has data-ajax-url means is filled by ajax request on keypress
-    if ($(dropdown).data('ajax-url')) {
-        select2Conf.ajax = {
+	if ($(dropdown).data('ajax-url')) {
+		select2Conf.ajax = {
             url: $(dropdown).data('ajax-url'),
             dataType: 'json',
+            delay: 250,
         };
         select2Conf.minimumInputLength = 3;
-    }
+	}
 
     //If data-placeholder is defined the dropdown placeholder text is changed
-    if ($(dropdown).data('placeholder')) {
-        select2Conf.placeholder = $(dropdown).data('placeholder');
-    }
+	if ($(dropdown).data('placeholder')) {
+		select2Conf.placeholder = $(dropdown).data('placeholder');
+	}
 
     //Select2 is activated
-    $(dropdown).select2(select2Conf).on('select2:unselecting', function(e) {
+	$(dropdown).select2(select2Conf).on('select2:unselecting', function(e) {
         $(dropdown).data('unselecting', true);
     }).on('select2:open', function(e) {
         if ($(dropdown).data('unselecting')) {    
@@ -102,15 +98,9 @@ $(document).on("change", ".has-dependent-dropdown", function(){
                     destiny.trigger("change");
                 }
             },
-            success: function(data, textStatus, jqXHR) {
+            success: function(data) {
                 //Fills the destiny dropdown with the received data
-                var datos = null;
-
-                if (typeof jqXHR.responseJSON != "undefined") {
-                    datos = data;
-                } else {
-                    datos = JSON.parse(data);
-                }
+                var datos = JSON.parse(data);
 
                 $.each(datos.results, function(){
                     destiny.append($("<option>", {
@@ -124,59 +114,4 @@ $(document).on("change", ".has-dependent-dropdown", function(){
             }
         });
     });
-});
-
-
-/**
- * Event attached to the selects allowing to reload its options
- */
-$(document).on("reload-select-options", "select", function(e, callback) {
-    var dropdown = $(this);
-    var url = dropdown.data('reload-url');
-    var reloadData = dropdown.data('reload-data');
-
-    if (typeof url == "undefined") {
-        return false;
-    }
-
-    var data = {};
-
-    if (typeof reloadData != "undefined") {
-        $.each(reloadData, function(name, value) {
-            //Check if is an ID
-            if (/^\#.+/.test(value)) {
-                data[name] = $(value).val();
-            } else {
-                data[name] = value;
-            }
-        });
-    }
-
-    var jqXHR = $.ajax({
-        url: url,
-        type: 'get',
-        data: data,
-        beforeSend: function() {
-            dropdown.find('option').filter(function(index, element) {
-                return $(element).val() != "";
-            }).each(function(index, element) {
-                element.remove();
-            });
-        },
-        success: function(data) {
-            $.each(data.results, function(index, row) {
-                var opt = new Option(row.text, row.id, false, false);
-                dropdown.append(opt);
-            });
-
-            dropdown.trigger('change');
-        },
-        complete: function() {
-            if (typeof callback == "function") {
-                callback();
-            }
-        }
-    });
-
-    return jqXHR;
 });

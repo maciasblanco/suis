@@ -77,13 +77,17 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
+        $this->layout = "login";
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            //return $this->goBack();
+	    return $this->redirect(['site/index']);
         }
 
         $model->password = '';
@@ -168,5 +172,9 @@ class SiteController extends Controller
         $isCollapsed = ($collapsed == 1) ? true : false;
         
         Yii::$app->session->set('collapsed-sidebar', $isCollapsed);
+    }
+    public function actionProximoaimplementarse(){
+        //$this ->layout='main';
+        return $this->renderAjax('/site/proximoaimplementarse');
     }
 }

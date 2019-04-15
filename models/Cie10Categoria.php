@@ -71,7 +71,6 @@ class Cie10Categoria extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Cie10Subcategoria::className(), ['id_cie10_categoria' => 'id']);
     }
-
     /**
      * Codigo + Descripcion
      */

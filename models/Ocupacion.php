@@ -57,4 +57,12 @@ class Ocupacion extends \yii\db\ActiveRecord
     {
         return $this->hasMany(DatosRepresentante::className(), ['id_ocupacion' => 'id']);
     }
+
+    public function getNombreCompleto()
+    {
+        return implode(' ', [
+            $this->codigo,
+            $this->nombre
+        ]);
+    }
 }

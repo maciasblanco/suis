@@ -71,7 +71,6 @@ class Cie10Grupo extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Cie10Capitulo::className(), ['id' => 'id_cie10_capitulo']);
     }
-
     /**
      * Codigo + Descripcion
      */

@@ -63,4 +63,10 @@ class Etnia extends \yii\db\ActiveRecord
     {
         return $this->descripcion;
     }
+
+    public function getNombreCompleto()
+    {
+        return $this->descripcion;
+
+    }
 }

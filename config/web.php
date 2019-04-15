@@ -35,9 +35,7 @@ $config = [
         'epi10' => [
             'class' => 'app\modules\epi10\Epi10Module',
         ],
-        /*'pqn' => [
-            'class' => 'app\modules\pqn\PqnModule',
-        ],*/
+
         'mortalidad' => [
            'class' => 'app\modules\mortalidad\MortalidadModule',
         ],
@@ -115,11 +113,11 @@ $config = [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'site/logout',
+            /*'site/logout',
             'site/index',
             'site/error',
-            'site/sidebar',
-            //'*',
+            'site/sidebar',*/
+            '*',
         ]
     ],
     'params' => $params,
